@@ -13,19 +13,26 @@ Automatically back up and restore your custom Home Assistant automations.
 
 ## Installation
 
-### Via HACS
+### Via Add-on Store (Recommended)
 
-1. Add this repository to HACS as a custom repository
-2. Install the "Automation Backup & Restore" add-on
-3. Configure the add-on options
-4. Start the add-on
+1. Go to **Settings → Add-ons → Add-on Store**
+2. Click the three dots (⋮) → **Add custom repository**
+3. Enter the URL: `https://github.com/WSLAB3D/automation-backup-restore`
+4. Click **Add**
+5. Find "Automation Backup & Restore" in the add-on store
+6. Click **Install**
+7. Configure the add-on options
+8. Start the add-on
 
 ### Manual Installation
 
-1. Copy this repository to your Home Assistant add-ons directory
-2. Restart Home Assistant
-3. Install the add-on from the add-on store
-4. Configure and start
+1. Clone or download this repository
+2. Copy the `automation_backup_restore` folder to your Home Assistant add-ons directory:
+   - Local installation: `/homeassistant/addons/`
+   - Supervised installation: `/addons/`
+3. Restart Home Assistant
+4. The add-on should now appear in the add-on store
+5. Install, configure, and start
 
 ## Configuration
 
