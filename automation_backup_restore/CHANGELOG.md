@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.6] - 2026-10-16
+
+### Changed
+- Disabled ingress and use direct port access (8099) for better reliability
+- Access web UI at http://your-home-assistant:8099 instead of through ingress
+
 ## [0.0.5] - 2026-10-16
 
 ### Fixed
