@@ -42,25 +42,33 @@ def main() -> None:
 
         def do_GET(self):
             """Handle GET requests."""
-            if self.path == "/api/status":
-                self.send_json_response(self.get_status())
-            elif self.path == "/api/options":
-                self.send_json_response(load_options())
-            elif self.path == "/api/backup":
-                self.send_json_response(self.get_backup())
-            else:
-                self.serve_static()
+            try:
+                if self.path == "/api/status":
+                    self.send_json_response(self.get_status())
+                elif self.path == "/api/options":
+                    self.send_json_response(load_options())
+                elif self.path == "/api/backup":
+                    self.send_json_response(self.get_backup())
+                else:
+                    self.serve_static()
+            except Exception as exc:
+                _LOGGER.error("GET %s failed: %s", self.path, exc)
+                self.send_error(500, str(exc))
 
         def do_POST(self):
             """Handle POST requests."""
-            if self.path == "/api/backup":
-                self.send_json_response(self.create_backup())
-            elif self.path == "/api/restore":
-                self.send_json_response(self.restore())
-            elif self.path == "/api/reload":
-                self.send_json_response(self.reload())
-            else:
-                self.send_error(404, "Not Found")
+            try:
+                if self.path == "/api/backup":
+                    self.send_json_response(self.create_backup())
+                elif self.path == "/api/restore":
+                    self.send_json_response(self.restore())
+                elif self.path == "/api/reload":
+                    self.send_json_response(self.reload())
+                else:
+                    self.send_error(404, "Not Found")
+            except Exception as exc:
+                _LOGGER.error("POST %s failed: %s", self.path, exc)
+                self.send_error(500, str(exc))
 
         def send_json_response(self, data: dict) -> None:
             """Send a JSON response."""
@@ -77,14 +85,15 @@ def main() -> None:
 
         def get_status(self) -> dict:
             """Get current status."""
+            _LOGGER.info("GET /api/status called")
             options = load_options()
             backup_path = Path(options.get("backup_path", "/config/automation_backups.json"))
             record = get_backup_record(backup_path)
-            
+
             current_yaml = get_yaml_automations()
             current_ui = get_ui_automations()
-            
-            return {
+
+            status = {
                 "backup_path": str(backup_path),
                 "backup_exists": backup_path.exists(),
                 "recorded_at": record.get("recorded_at"),
@@ -94,6 +103,8 @@ def main() -> None:
                 "current_ui_count": len(current_ui),
                 "options": options,
             }
+            _LOGGER.info("Status: %s", status)
+            return status
 
         def get_backup(self) -> dict:
             """Get the backup record."""
@@ -103,19 +114,20 @@ def main() -> None:
 
         def create_backup(self) -> dict:
             """Create a new backup."""
+            _LOGGER.info("POST /api/backup called")
             options = load_options()
             backup_path = Path(options.get("backup_path", "/config/automation_backups.json"))
-            
+
             yaml_automations = get_yaml_automations()
             ui_automations = get_ui_automations()
-            
+
             record = {
                 "yaml_automations": yaml_automations,
                 "ui_automations": ui_automations,
             }
-            
+
             save_backup_record(record, backup_path)
-            
+
             return {
                 "success": True,
                 "message": f"Backup created with {len(yaml_automations)} YAML and {len(ui_automations)} UI automations",
