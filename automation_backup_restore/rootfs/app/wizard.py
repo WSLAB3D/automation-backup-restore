@@ -44,6 +44,14 @@ def main() -> None:
             """Override to use our logger."""
             _LOGGER.info(format, *args)
 
+        def do_OPTIONS(self):
+            """Handle OPTIONS requests for CORS."""
+            self.send_response(200)
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type")
+            self.end_headers()
+
         def do_GET(self):
             """Handle GET requests."""
             _LOGGER.info("GET request for path: %s", self.path)
@@ -80,6 +88,9 @@ def main() -> None:
             """Send a JSON response."""
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type")
             self.end_headers()
             self.wfile.write(json.dumps(data, indent=2, default=str).encode())
 

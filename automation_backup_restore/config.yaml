@@ -30,7 +30,8 @@ schema:
   auto_backup_new: bool
   include_ui_automations: bool
   include_yaml_automations: bool
-ingress: false
+ingress: true
+ingress_port: 8099
 ports:
   8099/tcp: 8099
 panel_title: "Automation Backup"
