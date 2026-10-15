@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2026-10-16
+
+### Added
+- Detailed HTTP request logging to debug API issues
+- JavaScript console logging for debugging web interface
+
 ## [0.0.3] - 2026-10-16
 
 ### Added
