@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.5] - 2026-10-16
+
+### Fixed
+- Use absolute URLs for API calls to work with Home Assistant ingress
+- Fixed web interface not making API requests when accessed through ingress
+
 ## [0.0.4] - 2026-10-16
 
 ### Added
