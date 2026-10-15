@@ -55,7 +55,11 @@ The add-on runs automatically on the configured interval, checking for:
 
 ### Manual Mode
 
-Access the web interface at `http://your-home-assistant:8099` to:
+Access the web interface in two ways:
+- **Via Home Assistant**: Click "Open Web UI" in the add-on settings
+- **Direct access**: Go to `http://your-home-assistant:8099`
+
+From the web interface you can:
 - View current backup status
 - Create a new backup
 - Restore from backup

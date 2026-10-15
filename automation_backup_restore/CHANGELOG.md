@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.7] - 2026-10-16
+
+### Fixed
+- Re-enabled ingress with proper CORS headers for API access
+- Added CORS support to allow API calls from the web interface
+- Both ingress and direct port access (8099) are now available
+
 ## [0.0.6] - 2026-10-16
 
 ### Changed
