@@ -30,7 +30,8 @@ schema:
   auto_backup_new: bool
   include_ui_automations: bool
   include_yaml_automations: bool
-ingress: true
-ingress_port: 8099
+ingress: false
+ports:
+  8099/tcp: 8099
 panel_title: "Automation Backup"
 panel_icon: "mdi:backup-restore"

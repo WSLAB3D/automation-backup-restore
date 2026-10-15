@@ -162,14 +162,11 @@
     </div>
 
     <script>
-        // Get the base URL from the current location
-        const baseUrl = window.location.origin;
-
         async function refreshStatus() {
             console.log('refreshStatus called');
             try {
                 console.log('Fetching /api/status');
-                const response = await fetch(`${baseUrl}/api/status`);
+                const response = await fetch('/api/status');
                 console.log('Response status:', response.status);
                 const data = await response.json();
                 console.log('Response data:', data);
@@ -188,7 +185,7 @@
         async function createBackup() {
             showMessage('Creating backup...', 'info');
             try {
-                const response = await fetch(`${baseUrl}/api/backup`, { method: 'POST' });
+                const response = await fetch('/api/backup', { method: 'POST' });
                 const data = await response.json();
 
                 if (data.success) {
@@ -205,7 +202,7 @@
         async function restoreBackup() {
             showMessage('Restoring backup...', 'info');
             try {
-                const response = await fetch(`${baseUrl}/api/restore`, { method: 'POST' });
+                const response = await fetch('/api/restore', { method: 'POST' });
                 const data = await response.json();
 
                 if (data.success) {
@@ -225,7 +222,7 @@
         async function reloadAutomations() {
             showMessage('Reloading automations...', 'info');
             try {
-                const response = await fetch(`${baseUrl}/api/reload`, { method: 'POST' });
+                const response = await fetch('/api/reload', { method: 'POST' });
                 const data = await response.json();
 
                 if (data.success) {
