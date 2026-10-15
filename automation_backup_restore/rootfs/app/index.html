@@ -163,16 +163,21 @@
 
     <script>
         async function refreshStatus() {
+            console.log('refreshStatus called');
             try {
+                console.log('Fetching /api/status');
                 const response = await fetch('/api/status');
+                console.log('Response status:', response.status);
                 const data = await response.json();
-                
+                console.log('Response data:', data);
+
                 document.getElementById('backup-yaml-count').textContent = data.backup_yaml_count;
                 document.getElementById('backup-ui-count').textContent = data.backup_ui_count;
                 document.getElementById('current-yaml-count').textContent = data.current_yaml_count;
                 document.getElementById('current-ui-count').textContent = data.current_ui_count;
                 document.getElementById('last-backup').textContent = data.recorded_at || 'No backup';
             } catch (error) {
+                console.error('Error fetching status:', error);
                 showMessage('Failed to fetch status', 'error');
             }
         }

@@ -40,8 +40,13 @@ def main() -> None:
     class APIHandler(SimpleHTTPRequestHandler):
         """Handle API requests."""
 
+        def log_message(self, format, *args):
+            """Override to use our logger."""
+            _LOGGER.info(format, *args)
+
         def do_GET(self):
             """Handle GET requests."""
+            _LOGGER.info("GET request for path: %s", self.path)
             try:
                 if self.path == "/api/status":
                     self.send_json_response(self.get_status())
@@ -57,6 +62,7 @@ def main() -> None:
 
         def do_POST(self):
             """Handle POST requests."""
+            _LOGGER.info("POST request for path: %s", self.path)
             try:
                 if self.path == "/api/backup":
                     self.send_json_response(self.create_backup())
