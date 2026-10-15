@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.8] - 2026-10-16
+
+### Changed
+- Switched from simple HTTP server to Flask web framework
+- Added IngressMiddleware to properly handle Home Assistant ingress proxy
+- Web interface now works correctly through Home Assistant's "Open Web UI" button
+- Removed separate index.html file, now using Flask template rendering
+
 ## [0.0.7] - 2026-10-16
 
 ### Fixed

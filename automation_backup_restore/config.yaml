@@ -1,5 +1,5 @@
 name: "Automation Backup & Restore"
-version: "0.0.7"
+version: "0.0.8"
 slug: "automation_backup_restore"
 description: >-
   Automatically back up and restore your custom Home Assistant automations.
@@ -32,7 +32,5 @@ schema:
   include_yaml_automations: bool
 ingress: true
 ingress_port: 8099
-ports:
-  8099/tcp: 8099
 panel_title: "Automation Backup"
 panel_icon: "mdi:backup-restore"
