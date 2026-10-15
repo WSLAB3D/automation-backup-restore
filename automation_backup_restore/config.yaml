@@ -1,5 +1,5 @@
 name: "Automation Backup & Restore"
-version: "0.0.1"
+version: "0.0.2"
 slug: "automation_backup_restore"
 description: >-
   Automatically back up and restore your custom Home Assistant automations.
